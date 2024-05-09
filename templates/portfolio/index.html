@@ -1,0 +1,45 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+{% block content %}
+
+    <div>
+        <h1 class="mt-5 mb-4 text-light fs-4">This is my Portfolio</h1>
+        
+        <div class="d-flex justify-content-evenly">
+            <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="card mx-2 bg-black text-light clickable-card" style="width: 20rem;">
+                <img src="{% static '\portfolio\assets\exemplo-imagem.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Project Name</h5>
+                    <div class="d-flex justify-content-end">
+                      <span class="badge text-bg-secondary mx-1">Python</span>
+                      <span class="badge text-bg-secondary mx-1">Data-Science</span>
+                    </div>
+                </div>
+            </div>            
+
+        </div>
+    </div>
+
+    <div class="modal fade text-light" data-bs-theme="dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Project Name</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+                <img src="{% static '\portfolio\assets\exemplo-imagem.png' %}" class="card-img-top" alt="...">
+                <div>
+                  <p>texto</p>
+                  <p>texto</p>
+                  <p>texto</p>
+                <div>
+            </div>
+            {% comment %} <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </div>
+
+{% endblock content %}
