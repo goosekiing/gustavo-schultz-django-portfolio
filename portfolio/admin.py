@@ -2,7 +2,7 @@ from django.contrib import admin
 from portfolio.models import Category, Projects
 
 class ProjectsAdmin(admin.ModelAdmin):
-    list_display = ("id", "project_name", "description", "date")
+    list_display = ("id", "name", "description", "date")
     search_fields = ('project_name',)
     list_filter = ('categories',)
    
