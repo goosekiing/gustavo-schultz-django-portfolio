@@ -4,7 +4,7 @@ from portfolio.models import Category, Projects
 class ProjectsAdmin(admin.ModelAdmin):
     list_display = ("id", "project_name", "description", "date")
     search_fields = ('project_name',)
-    list_filter = ('category',)
+    list_filter = ('categories',)
    
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "name",)

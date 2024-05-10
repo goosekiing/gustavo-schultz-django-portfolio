@@ -10,7 +10,7 @@ class Category(models.Model):
 class Projects(models.Model):
 
     project_name = models.CharField(max_length=128, null=False, blank=False)
-    category = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category)
     description = models.TextField(default="", null=False, blank=False)
     github_link = models.URLField(max_length=256, blank=True, null=True)
     image = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
