@@ -17,4 +17,4 @@ class Projects(models.Model):
     date = models.DateTimeField(default=timezone.now, blank=False)
 
     def __str__(self):
-        return self.project_name
+        return self.name
