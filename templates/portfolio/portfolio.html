@@ -8,7 +8,7 @@
 
     {% if projects %}
     {% for project in  projects%}
-      <div data-bs-toggle="modal" data-bs-target="#{{ project.id }}" class="card mx-2 bg-black text-light clickable-card" style="width: 20rem;">
+      <a href="{% url "project" project.id %}" class="card mx-2 bg-black text-light clickable-card" style="width: 20rem;">
         <img src="{{ project.image.url }}" class="card-img-top img-fluid" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ project.name }}</h5>
@@ -20,7 +20,7 @@
             {% endif %}
           </div>
         </div>
-      </div>
+      </a>
     {% endfor %}
     {% endif %}
 
