@@ -3,6 +3,12 @@ body {
     font-weight: 400;
 }
 
+.modal-img {
+    max-width: 50%;  /* Ajusta para que a largura não ultrapasse 100% do seu contêiner */
+    height: auto;  /* Mantém a proporção da altura baseada na largura ajustada */
+    width: auto;  /* Para garantir que a largura também ajuste baseada na altura quando necessário */
+}
+
 .clickable-card{
     cursor: pointer;
 }
