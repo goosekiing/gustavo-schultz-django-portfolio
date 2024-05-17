@@ -1,0 +1,15 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row mt-5">
+  <div class="col-md-6">
+    <img src="{{ about_info.picture.url }}" class="card-img-top img-fluid rounded" alt="...">
+  </div>
+  <div class="col-md-6">
+    <h1 class="modal-title fs-5">About Me</h1>
+      {{ about_info.text|linebreaks }}
+  </div>
+</div>
+
+{% endblock content %}

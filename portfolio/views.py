@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from portfolio.models import Projects
+from portfolio.models import Projects, About
 
 def index(request):
     return render(request, "portfolio/index.html")
+
+def about(request):
+    about_info = About.objects.first()
+    return render(request, "portfolio/about.html", {'about_info': about_info})
 
 def portfolio(request):
     projects = Projects.objects.order_by("-date")

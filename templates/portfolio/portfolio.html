@@ -7,7 +7,7 @@
   <div class="d-flex flex-column flex-sm-row justify-content-evenly align-items-center">
 
     {% if projects %}
-    {% for project in  projects%}
+    {% for project in projects%}
       <a href="{% url "project" project.id %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
         <img src="{{ project.image.url }}" class="card-img-top img-fluid" alt="...">
         <div class="card-body">
