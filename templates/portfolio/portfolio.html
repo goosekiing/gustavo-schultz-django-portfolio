@@ -4,11 +4,11 @@
 
   <h1 class="mt-5 mb-4 text-light fs-4">This is my Portfolio</h1>
   
-  <div class="d-flex justify-content-evenly">
+  <div class="d-flex flex-column flex-sm-row justify-content-evenly align-items-center">
 
     {% if projects %}
     {% for project in  projects%}
-      <a href="{% url "project" project.id %}" class="card mx-2 bg-black text-light clickable-card" style="width: 20rem;">
+      <a href="{% url "project" project.id %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
         <img src="{{ project.image.url }}" class="card-img-top img-fluid" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ project.name }}</h5>
@@ -25,26 +25,5 @@
     {% endif %}
 
   </div>
-
-  {% if projects %}
-  {% for project in  projects %}
-  <div class="modal fade text-light" data-bs-theme="dark" id="{{ project.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-              <div class="modal-body row">
-                  <div class="col-lg-6">
-                      <img src="{{ project.image.url }}" class="img-fluid rounded" alt="...">
-                  </div>
-                  <div class="col-md-6">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ project.name }}</h1>
-                    <p class="my-1">{{ project.description }}</p>
-                    <a href="{{ project.github_link }}" class="btn btn-secondary"><i class="bi bi-github"></i> GitHub Link</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  {% endfor %}
-  {% endif %}
 
 {% endblock content %}
