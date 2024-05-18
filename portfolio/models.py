@@ -14,7 +14,6 @@ class About(SingletonModel):
         verbose_name = "About"
         verbose_name_plural = "About"
 
-
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True, null=False, blank=False)
 
@@ -40,3 +39,17 @@ class Projects(models.Model):
     class Meta:
         verbose_name = "Project"
         verbose_name_plural = "Projects"
+
+class Contact(SingletonModel):
+    whatsapp_link = models.URLField(max_length=256, blank=False, null=False)
+    github_link = models.URLField(max_length=256, blank=False, null=False)
+    linkedin_link = models.URLField(max_length=256, blank=False, null=False)
+    email = models.CharField(max_length=128, null=False, blank=False)
+    date = models.DateTimeField(default=timezone.now, blank=False)
+
+    def __str__(self):
+        return "About Me Model"
+    
+    class Meta:
+        verbose_name = "Contact"
+        verbose_name_plural = "Contact"

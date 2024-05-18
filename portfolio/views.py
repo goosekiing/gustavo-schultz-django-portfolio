@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from portfolio.models import Projects, About
+from portfolio.models import Projects, Contact
 
 def index(request):
     return render(request, "portfolio/index.html")
@@ -18,4 +18,5 @@ def project(request, project_id):
     return render(request, "portfolio/project.html", {'project': project})
 
 def contact(request):
-    return render(request, "portfolio/contact.html")
+    contact_info = Contact.objects.first()
+    return render(request, "portfolio/contact.html", {'contact_info': contact_info})

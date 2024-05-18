@@ -4,10 +4,12 @@
 
 <h5>You can reach me out throught the following links:</h5>
 <div class="d-flex">
-  <a href="#" class="btn btn-secondary mx-2"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-  <a href="#" class="btn btn-secondary mx-2"><i class="bi bi-github"></i> GitHub</a>
-  <a href="#" class="btn btn-secondary mx-2"><i class="bi bi-linkedin"></i> LinkedIn</a>
-  <a href="#" class="btn btn-secondary mx-2"><i class="bi bi-at"></i> e-mail</a>
+  {% if contact_info %}
+    <a href="{{ contact_info.whatsapp_link }}" class="btn btn-secondary mx-2"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+    <a href="{{ contact_info.github_link }}" class="btn btn-secondary mx-2"><i class="bi bi-github"></i> GitHub</a>
+    <a href="{{ contact_info.linkedin_link }}" class="btn btn-secondary mx-2"><i class="bi bi-linkedin"></i> LinkedIn</a>
+    <a href="mailto:{{ contact_info.email }}" class="btn btn-secondary mx-2"><i class="bi bi-at"></i> e-mail</a>
+  {% endif %}
 </div>
 
 {% endblock content %}
