@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from portfolio.models import Projects, Contact
+from portfolio.models import About, Projects, Contact
 
 def index(request):
     return render(request, "portfolio/index.html")
