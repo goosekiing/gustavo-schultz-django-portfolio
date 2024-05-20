@@ -30,7 +30,6 @@ class Projects(models.Model):
     categories = models.ManyToManyField(Category)
     description = models.TextField(default="", null=False, blank=True)
     github_link = models.URLField(max_length=256, blank=True, null=True)
-    image = models.ImageField(upload_to='images/projects/%Y/%m/%d', blank=True)
     date = models.DateTimeField(default=timezone.now, blank=False)
 
     def __str__(self):
@@ -39,6 +38,17 @@ class Projects(models.Model):
     class Meta:
         verbose_name = "Project"
         verbose_name_plural = "Projects"
+
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Projects, related_name="images", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/projects/%Y/%m/%d', blank=True)
+
+    def __str__(self):
+        return f"Imagem do projeto {self.project.name}"
+    
+    class Meta:
+        verbose_name = "Project Image"
+        verbose_name_plural = "Project Image"
 
 class Contact(SingletonModel):
     whatsapp_link = models.URLField(max_length=256, blank=False, null=False)

@@ -9,14 +9,18 @@
     {% if projects %}
     {% for project in projects%}
       <a href="{% url "project" project.id %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
-        <img src="{{ project.image.url }}" class="card-img-top img-fluid" alt="...">
+        {% if project.images.exists %}
+          <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
+        {% else %}
+          <img src="{% static 'portfolio/assets/no_image.jpg' %}" class="card-img-top img-fluid" alt="Sorry, this project has no image">
+        {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{ project.name }}</h5>
           <div class="d-flex justify-content-end">
             {% if project.categories %}
-            {% for category in project.categories.all %}
-              <span class="badge text-bg-secondary mx-1">{{ category }}</span>
-            {% endfor %}
+              {% for category in project.categories.all %}
+                <span class="badge text-bg-secondary mx-1">{{ category }}</span>
+              {% endfor %}
             {% endif %}
           </div>
         </div>

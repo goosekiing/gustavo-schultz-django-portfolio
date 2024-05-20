@@ -4,8 +4,32 @@
 
   <div class="row mt-5">
     <div class="col-md-6">
-      <img src="{{ project.image.url }}" class="img-fluid rounded" alt="...">
-    </div>
+
+      {% if project.images.exists %}
+          
+      <div id="project-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {% for image in project.images.all %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img src="{{ image.image.url }}" class="d-block w-100" alt="Project Image">
+            </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#project-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#project-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+        {% else %}
+          <img src="{% static 'portfolio/assets/no_image.jpg' %}" class="card-img-top img-fluid" alt="Sorry, this project has no image">
+        {% endif %}
+
+      </div>
     <div class="col-md-6">
       <h1 class="modal-title fs-5" id="exampleModalLabel">{{ project.name }}</h1>
       <p class="my-1">{{ project.description }}</p>

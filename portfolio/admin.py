@@ -1,5 +1,5 @@
 from django.contrib import admin
-from portfolio.models import About, Category, Projects, Contact
+from portfolio.models import About, Category, Projects, Contact, ProjectImage
 
 class AboutAdmin(admin.ModelAdmin):
     list_display = ("id", "text", "date")
@@ -9,10 +9,15 @@ class AboutAdmin(admin.ModelAdmin):
             return False
         return True
 
+class ProjectImageInline(admin.TabularInline):
+    model = ProjectImage
+    extra = 1
+
 class ProjectsAdmin(admin.ModelAdmin):
     list_display = ("name", "description", "date")
     search_fields = ('project_name',)
     list_filter = ('categories',)
+    inlines = [ProjectImageInline]
    
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "name",)
