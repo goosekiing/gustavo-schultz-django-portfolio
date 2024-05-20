@@ -11,7 +11,7 @@
         <div class="carousel-inner">
           {% for image in project.images.all %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <img src="{{ image.image.url }}" class="d-block w-100" alt="Project Image">
+              <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="Project Image">
             </div>
           {% endfor %}
         </div>
@@ -33,7 +33,9 @@
     <div class="col-md-6">
       <h1 class="modal-title fs-5" id="exampleModalLabel">{{ project.name }}</h1>
       <p class="my-1">{{ project.description }}</p>
-      <a href="{{ project.github_link }}" class="btn btn-secondary"><i class="bi bi-github"></i> GitHub Link</a>
+      {% if project.github_link %}
+        <a href="{{ project.github_link }}" class="btn btn-secondary"><i class="bi bi-github"></i> GitHub Link</a>
+      {% endif %}
     </div>
   </div>
 

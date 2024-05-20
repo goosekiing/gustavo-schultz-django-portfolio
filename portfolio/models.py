@@ -52,7 +52,7 @@ class ProjectImage(models.Model):
 
 class Contact(SingletonModel):
     whatsapp_link = models.URLField(max_length=256, blank=False, null=False)
-    github_link = models.URLField(max_length=256, blank=False, null=False)
+    github_link = models.URLField(max_length=256, blank=True, null=True)
     linkedin_link = models.URLField(max_length=256, blank=False, null=False)
     email = models.CharField(max_length=128, null=False, blank=False)
     date = models.DateTimeField(default=timezone.now, blank=False)
