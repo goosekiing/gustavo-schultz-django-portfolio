@@ -14,7 +14,7 @@ class ProjectImageInline(admin.TabularInline):
     extra = 1
 
 class ProjectsAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "date")
+    list_display = ("id", "name", "description", "display_online", "date")
     search_fields = ('project_name',)
     list_filter = ('categories',)
     inlines = [ProjectImageInline]

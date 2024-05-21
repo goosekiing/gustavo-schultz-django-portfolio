@@ -37,6 +37,7 @@ class Projects(models.Model):
     categories = models.ManyToManyField(Category)
     description = models.TextField(default="", null=False, blank=True)
     github_link = models.URLField(max_length=256, blank=True, null=True)
+    display_online = models.BooleanField(default=True)
     date = models.DateTimeField(default=timezone.now, blank=False)
 
     def __str__(self):
