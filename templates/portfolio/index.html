@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
-  <h1 class="mt-5 mb-4 text-light fs-4">This is my Portfolio</h1>
+  <h1 class="mt-5 mb-4 text-light fs-4">{{ website_info.index_title }}</h1>
+  {{ website_info.index_text|linebreaks }}
 
 {% endblock content %}

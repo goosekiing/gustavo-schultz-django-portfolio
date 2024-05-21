@@ -5,11 +5,17 @@
 <h5 class="my-4">You can reach me out through the following links:</h5>
 <div class="row justify-content-lg-start justify-content-center">
   <div class="col-lg-4 col-md-6 col-sm-8 col-10 text-center">
-    {% if contact_info %}
-      <a href="{{ contact_info.whatsapp_link }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-      <a href="{{ contact_info.github_link }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-github"></i> GitHub</a>
-      <a href="{{ contact_info.linkedin_link }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-linkedin"></i> LinkedIn</a>
-      <a href="mailto:{{ contact_info.email }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-at"></i> e-mail</a>
+    {% if website_info.whatsapp_link %}
+      <a href="{{ website_info.whatsapp_link }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+    {% endif %} 
+    {% if website_info.github_link %} 
+      <a href="{{ website_info.github_link }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-github"></i> GitHub</a>
+    {% endif %} 
+    {% if website_info.linkedin_link %}  
+      <a href="{{ website_info.linkedin_link }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-linkedin"></i> LinkedIn</a>
+    {% endif %} 
+    {% if website_info.email %}  
+      <a href="mailto:{{ website_info.email }}" class="btn btn-secondary btn-block w-100 my-2"><i class="bi bi-at"></i> E-mail</a>
     {% endif %}
   </div>
 </div>

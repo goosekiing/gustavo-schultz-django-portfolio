@@ -2,17 +2,24 @@ from django.db import models
 from django.utils import timezone
 from solo.models import SingletonModel
 
-class About(SingletonModel):
-    text = models.TextField(default="", null=False)
-    picture = models.ImageField(upload_to='images/about/%Y/%m/%d', blank=True)
+class WebsiteInfo(SingletonModel):
+    index_title = models.CharField(max_length=256, null=True, blank=True)
+    index_text = models.TextField(default="", null=False, blank=True)
+    about_title = models.CharField(max_length=256, default="About Me", null=False, blank=True)
+    about_text = models.TextField(default="", null=False, blank=False)
+    about_picture = models.ImageField(upload_to='images/about/%Y/%m/%d', blank=True)
+    whatsapp_link = models.URLField(max_length=256, blank=True, null=True)
+    github_link = models.URLField(max_length=256, blank=True, null=True)
+    linkedin_link = models.URLField(max_length=256, blank=True, null=True)
+    email = models.CharField(max_length=128, null=True, blank=True)
     date = models.DateTimeField(default=timezone.now, blank=False)
 
     def __str__(self):
-        return "About Me Model"
+        return "Website Index, About Me and Contact Info Model"
     
     class Meta:
-        verbose_name = "About"
-        verbose_name_plural = "About"
+        verbose_name = "Website Info"
+        verbose_name_plural = "Website Info"
 
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True, null=False, blank=False)
@@ -49,17 +56,3 @@ class ProjectImage(models.Model):
     class Meta:
         verbose_name = "Project Image"
         verbose_name_plural = "Project Image"
-
-class Contact(SingletonModel):
-    whatsapp_link = models.URLField(max_length=256, blank=False, null=False)
-    github_link = models.URLField(max_length=256, blank=True, null=True)
-    linkedin_link = models.URLField(max_length=256, blank=False, null=False)
-    email = models.CharField(max_length=128, null=False, blank=False)
-    date = models.DateTimeField(default=timezone.now, blank=False)
-
-    def __str__(self):
-        return "About Me Model"
-    
-    class Meta:
-        verbose_name = "Contact"
-        verbose_name_plural = "Contact"
