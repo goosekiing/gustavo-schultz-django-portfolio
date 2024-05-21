@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from portfolio.models import WebsiteInfo, Projects
+from portfolio.models import WebsiteInfo, Projects, Category
 
 def index(request):
     website_info = WebsiteInfo.objects.first()
@@ -12,8 +12,16 @@ def about(request):
 
 def portfolio(request):
     projects = Projects.objects.order_by("-date").filter(display_online=True)
+    categories = Category.objects.all
+    selected_tag = None
+    return render(request, "portfolio/portfolio.html", {'projects': projects, 'categories': categories, 'selected_tag': selected_tag})
 
-    return render(request, "portfolio/portfolio.html", {'projects': projects})
+def category(request, category_slug ):
+    category_obj = get_object_or_404(Category, slug=category_slug)
+    projects = Projects.objects.order_by("-date").filter(display_online=True, categories=category_obj)
+    categories = Category.objects.all
+    selected_tag = category_slug
+    return render(request, "portfolio/portfolio.html", {'projects': projects, 'categories': categories, 'selected_tag': selected_tag})
 
 def project(request, project_id):
     project = Projects.objects.get(pk=project_id)

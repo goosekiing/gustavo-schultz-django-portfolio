@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 from solo.models import SingletonModel
 
 class WebsiteInfo(SingletonModel):
@@ -22,7 +23,12 @@ class WebsiteInfo(SingletonModel):
         verbose_name_plural = "Website Info"
 
 class Category(models.Model):
-    name = models.CharField(max_length=64, unique=True, null=False, blank=False)
+    name = models.CharField(max_length=32, unique=True, null=False, blank=False)
+    slug = models.SlugField(default="", max_length=64, unique=True, null=False, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

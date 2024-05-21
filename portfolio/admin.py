@@ -20,7 +20,7 @@ class ProjectsAdmin(admin.ModelAdmin):
     inlines = [ProjectImageInline]
    
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name",)
+    list_display = ("id", "name", "slug")
 
 admin.site.register(WebsiteInfo, WebsiteInfoAdmin)
 admin.site.register(Category, CategoryAdmin)
