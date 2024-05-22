@@ -6,17 +6,17 @@
 <h1 class="text-light fs-4">This is my Portfolio</h1>
   <div class="d-flex column">
     <p>Filter by tags:</p>
-    {% for category in categories %}
-    <a href="{% url 'category' category.slug %}"><li class="mx-1 badge text-bg-secondary {% if category.slug == selected_tag %}text-bg-light{% endif %}">{{ category.name|title }}</li></a>
-    {% endfor %}
     <a href="{% url 'portfolio' %}"><li class="mx-1 badge text-bg-secondary {% if not selected_tag %}text-bg-light{% endif %}">All Projects</li></a>
+    {% for category in categories %}
+    <a href="{% url 'category' category.slug %}"><li class="mx-1 badge text-bg-secondary {% if category.slug == selected_tag %}text-bg-light{% endif %}">{{ category.name }}</li></a>
+    {% endfor %}
   </div>
 </div>
 
 <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">
   {% if projects %}
   {% for project in projects%}
-    <a href="{% url "project" project.id %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
+    <a href="{% url 'project' project.id %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
       {% if project.images.exists %}
         <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
       {% else %}
@@ -27,7 +27,7 @@
         <div class="d-flex justify-content-end">
           {% if project.categories %}
             {% for category in project.categories.all %}
-              <span class="badge text-bg-secondary mx-1">{{ category|title }}</span>
+              <span class="badge text-bg-secondary mx-1">{{ category }}</span>
             {% endfor %}
           {% endif %}
         </div>

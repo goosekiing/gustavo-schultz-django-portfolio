@@ -5,7 +5,7 @@ urlpatterns = [
     path('', index, name='index'),
     path("about/", about, name="about"),
     path('portfolio/', portfolio, name="portfolio"),
-    path('project/<int:project_id>/', project, name='project'),
+    path('portfolio/<int:project_id>/', project, name='project'),
     path('contact', contact, name='contact'),
     path('portfolio/<slug:category_slug>', category, name='category')
 ]
