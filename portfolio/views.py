@@ -12,21 +12,22 @@ def about(request):
 
 def portfolio(request):
     projects = Projects.objects.order_by("-date").filter(display_online=True)
-    categories = Category.objects.all
+    categories = Category.objects.all()
     selected_tag = None
     return render(request, "portfolio/portfolio.html", {'projects': projects, 'categories': categories, 'selected_tag': selected_tag})
 
 def category(request, category_slug ):
     category_obj = get_object_or_404(Category, slug=category_slug)
     projects = Projects.objects.order_by("-date").filter(display_online=True, categories=category_obj)
-    categories = Category.objects.all
+    categories = Category.objects.all()
     selected_tag = category_slug
     return render(request, "portfolio/portfolio.html", {'projects': projects, 'categories': categories, 'selected_tag': selected_tag})
 
 def project(request, project_id):
-    project = Projects.objects.get(pk=project_id)
+    project = get_object_or_404(Projects, pk=project_id)
     if project.display_online:
-        return render(request, "portfolio/project.html", {'project': project})
+        tag = request.GET.get('tag')
+        return render(request, "portfolio/project.html", {'project': project, 'tag': tag})
     raise Http404("Error: project id not found")
 
 def contact(request):

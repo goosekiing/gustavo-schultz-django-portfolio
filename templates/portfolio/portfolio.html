@@ -16,7 +16,7 @@
 <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">
   {% if projects %}
   {% for project in projects%}
-    <a href="{% url 'project' project.id %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
+    <a href="{% url 'project' project.id %}{% if selected_tag %}?tag={{selected_tag}}{% endif %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
       {% if project.images.exists %}
         <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
       {% else %}

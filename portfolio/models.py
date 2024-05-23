@@ -39,10 +39,10 @@ class Category(models.Model):
 
 class Projects(models.Model):
 
-    name = models.CharField(max_length=128, null=False, blank=False)
+    name = models.CharField(max_length=64, unique=True, null=False, blank=False)
     categories = models.ManyToManyField(Category)
     description = models.TextField(default="", null=False, blank=True)
-    github_link = models.URLField(max_length=256, blank=True, null=True)
+    github_link = models.URLField(max_length=128, blank=True, null=True)
     display_online = models.BooleanField(default=True)
     date = models.DateTimeField(default=timezone.now, blank=False)
 
