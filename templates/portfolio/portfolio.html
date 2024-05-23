@@ -2,15 +2,14 @@
 {% load static %}
 {% block content %}
 
-<div class="d-flex justify-content-between mt-5 mb-4t">
-<h1 class="text-light fs-4">This is my Portfolio</h1>
-  <div class="d-flex column">
-    <p>Filter by tags:</p>
-    <a href="{% url 'portfolio' %}"><li class="mx-1 badge text-bg-secondary {% if not selected_tag %}text-bg-light{% endif %}">All Projects</li></a>
-    {% for category in categories %}
-    <a href="{% url 'category' category.slug %}"><li class="mx-1 badge text-bg-secondary {% if category.slug == selected_tag %}text-bg-light{% endif %}">{{ category.name }}</li></a>
-    {% endfor %}
-  </div>
+<div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center mt-0 mb-0 mt-sm-2 mb-sm-3">
+  <h3 class="mt-2 my-sm-auto text-light fs-4">This is my Portfolio:</h3>
+    <div class="d-flex justify-content-sm-end justify-content-start flex-wrap col-sm-6 mb-3 mb-sm-auto">
+      <a href="{% url 'portfolio' %}"><li class="mx-1 badge text-bg-secondary {% if not selected_tag %}text-bg-light{% endif %}">All Projects</li></a>
+      {% for category in categories %}
+        <a href="{% url 'category' category.slug %}"><li class="mx-1 badge text-bg-secondary {% if category.slug == selected_tag %}text-bg-light{% endif %}">{{ category.name }}</li></a>
+      {% endfor %}
+    </div>
 </div>
 
 <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">

@@ -17,6 +17,8 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0px;
+	margin-top: 0px;
+    margin-bottom: 0px;
 	padding: 0px;
 	border: 0;
 	font-size: 100%;
