@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
+from django.db.models import Count
 from portfolio.models import WebsiteInfo, Projects, Category
 
 def index(request):
@@ -12,14 +13,14 @@ def about(request):
 
 def portfolio(request):
     projects = Projects.objects.order_by("-date").filter(display_online=True)
-    categories = Category.objects.all()
+    categories = Category.objects.annotate(project_count=Count('projects')).filter(project_count__gt=0)
     selected_tag = None
     return render(request, "portfolio/portfolio.html", {'projects': projects, 'categories': categories, 'selected_tag': selected_tag})
 
 def category(request, category_slug ):
     category_obj = get_object_or_404(Category, slug=category_slug)
     projects = Projects.objects.order_by("-date").filter(display_online=True, categories=category_obj)
-    categories = Category.objects.all()
+    categories = Category.objects.annotate(project_count=Count('projects')).filter(project_count__gt=0)
     selected_tag = category_slug
     return render(request, "portfolio/portfolio.html", {'projects': projects, 'categories': categories, 'selected_tag': selected_tag})
 
