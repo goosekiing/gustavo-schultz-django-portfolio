@@ -18,7 +18,7 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 ABOUT_PICTURE_DIR = 'images/about/'
-# CAROUSEL_IMAGES_DIR = 'images/carousel/'
+CAROUSEL_IMAGES_DIR = 'images/carousel/'
 PROJECT_IMAGE_DIR = 'images/projects/%Y/%m/%d'
 
 # Quick-start development settings - unsuitable for production

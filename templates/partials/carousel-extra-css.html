@@ -1,0 +1,77 @@
+<style>
+    :root {
+        --seconds-per-image: 5s;
+        --image-width: 250px;
+        --image-horizontal-margin: 125px;
+        --total-image-container-width: calc((2 * var(--image-horizontal-margin)) + var(--image-width))
+    }
+
+
+    @-webkit-keyframes scroll {
+        0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        }
+        100% {
+        -webkit-transform: translateX(calc(-1 * var(--total-image-container-width) * {{ carousel_images_count }}));
+        transform: translateX(calc(-1 * var(--total-image-container-width) * {{ carousel_images_count }}));
+        }
+    }
+
+    @keyframes scroll {
+        0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        }
+        100% {
+        -webkit-transform: translateX(calc(-1 * var(--total-image-container-width) * {{ carousel_images_count }}));
+        transform: translateX(calc(-1 * var(--total-image-container-width) * {{ carousel_images_count }}));
+        }
+        }
+    
+    .slider {
+        background: pr;
+        /* box-shadow: 0 10px 20px -5px rgba(0,0,0, 0.125); */
+        height: 100px;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+        width: 100%
+        }
+
+    .slider::before, .slider::after {
+        background: linear-gradient(to right, rgba(33, 37, 41, 1) 0%, rgba(33, 37, 41, 0) 100%);
+        content: "";
+        height: 100px;
+        position: absolute;
+        width: 200px;
+        z-index: 2;
+        }
+        
+    .slider::after {
+        right: 0;
+        top: 0;
+        -webkit-transform: rotateZ(180deg);
+        transform: rotateZ(180deg);
+        }
+        
+    .slider::before {
+        left: 0;
+        top: 0;
+        }
+
+    .slider .slide-track {
+        -webkit-animation: scroll calc(var(--seconds-per-image) * {{ carousel_images_count }}) linear infinite;
+        animation: scroll calc(var(--seconds-per-image) * {{ carousel_images_count }}) linear infinite;
+        display: flex;
+        width: calc((var(--total-image-container-width) * {{ carousel_images_count }}));
+        }
+
+    .slider .slide {
+        
+        height: 100px;
+        width: var(--total-image-container-width);
+        margin-right: var(--image-horizontal-margin);
+        margin-left: var(--image-horizontal-margin);
+        }
+    </style>

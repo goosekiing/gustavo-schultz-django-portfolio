@@ -2,7 +2,27 @@
 {% load static %}
 {% block content %}
 
-  <h1 class="mt-5 mb-4 text-light fs-4">{{ website_info.index_title }}</h1>
+<section class="mb-5">
+  <h3 class="mt-4 mb-3 text-light fs-4">{{ website_info.index_title }}</h3>
   {{ website_info.index_text|linebreaks }}
+</section>
+
+{% if carousel_images %}
+  <section class="mt-5"> {% comment %} https://webdesignerwall.com/wdw-snippet/infinite-autoplay-carousel {% endcomment %}
+
+    <div class="slider">
+      <div class="slide-track">
+
+          {% for image in carousel_images %}
+            <div class="slide d-flex">
+            <img src="{{ image.image.url }}" class="img-fluid my-auto" alt="{{ image.alt }}" />
+            </div>
+          {% endfor %}
+
+      </div>
+    </div> 
+
+  </section>
+{% endif %}
 
 {% endblock content %}

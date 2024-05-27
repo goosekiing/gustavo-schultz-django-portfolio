@@ -8,8 +8,8 @@ import os
 def about_picture_path(instance, filename):
     return os.path.join(settings.ABOUT_PICTURE_DIR, filename)
 
-# def carousel_image_path(instance, filename):
-#     return os.path.join(settings.CAROUSEL_IMAGES_DIR, filename)
+def carousel_image_path(instance, filename):
+    return os.path.join(settings.CAROUSEL_IMAGES_DIR, filename)
 
 def project_image_path(instance, filename):
     return os.path.join(settings.PROJECT_IMAGE_DIR, filename)
@@ -33,8 +33,17 @@ class WebsiteInfo(SingletonModel):
         verbose_name = "Website Info"
         verbose_name_plural = "Website Info"
 
-# class CarouselImages(models.Model):
-#     image = models.ImageField(upload_to='images/projects/%Y/%m/%d', null=False, blank=False)
+class CarouselImages(models.Model):
+    image = models.ImageField(upload_to=carousel_image_path, null=False, blank=False)
+    alt = models.CharField(max_length=256, default="", blank=True)
+    date = models.DateTimeField(default=timezone.now, blank=False)
+
+    def __str__(self):
+        return self.alt if self.alt != "" else f'Carousel Image {self.id}'
+    
+    class Meta:
+        verbose_name = "Carousel Image"
+        verbose_name_plural = "Carousel Images"
 
 class Category(models.Model):
     name = models.CharField(max_length=32, unique=True, null=False, blank=False)

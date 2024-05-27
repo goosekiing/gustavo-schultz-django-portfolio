@@ -175,6 +175,7 @@ cython_debug/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
+svg-to-png.py
 
 # C extensions
 
