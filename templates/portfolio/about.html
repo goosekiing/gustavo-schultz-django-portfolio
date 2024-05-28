@@ -4,12 +4,14 @@
 
 <section>
   <div class="row mt-5">
-    <div class="col-md-6">
-      <img src="{{ website_info.about_picture.url }}" class="card-img-top img-fluid rounded" alt="...">
+    <div class="col-md-6 col-xxl-4">
+      {% if website_info.about_picture %}
+        <img src="{{ website_info.about_picture.url }}" class="img-fluid rounded" alt="{{ website_info.about_picture_alt }}">
+      {% endif %}
     </div>
-    <div class="col-md-6">
-      <h1 class="modal-title fs-5">{{ website_info.about_title }}</h1>
-        {{ website_info.about_text|linebreaks }}
+    <div class="{% if website_info.about_picture %}col-md-6 col-xxl-8{% endif %}">
+      <h3 class="fs-5">{{ website_info.about_title }}</h3>
+      {{ website_info.about_text|linebreaks }}
     </div>
   </div>
 </section>

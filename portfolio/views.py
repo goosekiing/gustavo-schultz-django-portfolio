@@ -8,7 +8,7 @@ def index(request):
     carousel_loops = 10
     carousel_images = CarouselImages.objects.all()
     carousel_images_list = list(carousel_images) * carousel_loops
-    carousel_images_count = carousel_images.count()*carousel_loops
+    carousel_images_count = carousel_images.count() * carousel_loops
     context = {
         'website_info': website_info,
         'carousel_images': carousel_images_list,
@@ -46,9 +46,11 @@ def project(request, project_id):
     project = get_object_or_404(Projects, pk=project_id)
     if project.display_online:
         tag = request.GET.get('tag')
+        display_carousel_buttons = True if project.images.count() > 1 else False
         context = {
             'project': project,
-            'tag': tag
+            'tag': tag,
+            'display_carousel_buttons': display_carousel_buttons
             }
         return render(request, "portfolio/project.html", context)
     raise Http404("Error: project id not found")

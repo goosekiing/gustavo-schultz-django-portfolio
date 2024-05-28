@@ -6,7 +6,6 @@
         --total-image-container-width: calc((2 * var(--image-horizontal-margin)) + var(--image-width))
     }
 
-
     @-webkit-keyframes scroll {
         0% {
         -webkit-transform: translateX(0);
@@ -74,4 +73,17 @@
         margin-right: var(--image-horizontal-margin);
         margin-left: var(--image-horizontal-margin);
         }
-    </style>
+
+    @media (max-width: 768px){
+        .slider::before, .slider::after {
+            width: 100px;
+        }
+    }
+
+    @media (max-width: 576px){
+        .slider::before, .slider::after {
+            width: 50px;
+        }
+    }
+
+</style>

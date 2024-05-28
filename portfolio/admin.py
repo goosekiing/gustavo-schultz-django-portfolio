@@ -14,6 +14,7 @@ class CarouselImagesAdmin(admin.ModelAdmin):
 
 class ProjectImageInline(admin.TabularInline):
     model = ProjectImage
+    fields = ["image", "alt"]
     extra = 1
 
 class ProjectsAdmin(admin.ModelAdmin):

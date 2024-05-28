@@ -9,18 +9,20 @@
           <div class="carousel-inner">
             {% for image in project.images.all %}
               <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="Project Image">
+                <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ image.alt }}">
               </div>
             {% endfor %}
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#project-carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#project-carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          {% if display_carousel_buttons %}
+            <button class="carousel-control-prev" type="button" data-bs-target="#project-carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#project-carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          {% endif %}
         </div>
       {% else %}
         <img src="{% static 'portfolio/assets/no_image.jpg' %}" class="card-img-top img-fluid rounded" alt="Sorry, this project has no image">
@@ -29,7 +31,7 @@
 
     <div class="col-md-6 d-md-flex row align-content-between flex-wrap">
       <div>
-        <h3 class="modal-title fs-5">{{ project.name }}</h3>
+        <h3 class="fs-5">{{ project.name }}</h3>
         <p class="my-1">{{ project.description|linebreaks }}</p>
         {% if project.github_link %}
           <a href="{{ project.github_link }}" class="btn btn-secondary col-xl-3 col-4"><i class="bi bi-github"></i> GitHub</a>
