@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 
-<div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center mt-0 mb-0 mt-sm-2 mb-sm-3">
-  <h3 class="mt-2 my-sm-auto text-light fs-4">This is my Portfolio:</h3>
+<div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center mt-2 mt-sm-4 mb-0 mb-sm-3">
+  <h3 class="text-light fs-4 my-sm-auto">{{ website_info.portfolio_title }}</h3>
   {% if categories %}
     <div class="d-flex justify-content-sm-end justify-content-start flex-wrap col-sm-6 mb-3 mb-sm-auto">
       <a href="{% url 'portfolio' %}"><li class="mx-1 badge {% if selected_tag %}text-bg-secondary{% else %}text-bg-light{% endif %}">All Projects</li></a>

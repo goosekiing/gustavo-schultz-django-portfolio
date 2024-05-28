@@ -8,9 +8,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="{% url "about" %}">About me</a>
-          <a class="nav-link" href="{% url "portfolio" %}">Portfolio</a>
-          <a class="nav-link" href="{% url "contact" %}">Contact</a>
+          <a class="nav-link {% if about_page %}active{% endif %}" href="{% url "about" %}">About me</a>
+          <a class="nav-link {% if portfolio_page %}active{% endif %}" href="{% url "portfolio" %}">Portfolio</a>
+          <a class="nav-link {% if contact_page %}active{% endif %}" href="{% url "contact" %}">Contact</a>
         </div>
       </div>
     </div>

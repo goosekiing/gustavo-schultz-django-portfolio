@@ -21,6 +21,8 @@ class WebsiteInfo(SingletonModel):
     about_text = models.TextField(default="", null=False, blank=False)
     about_picture = models.ImageField(upload_to=about_picture_path, blank=True)
     about_picture_alt = models.CharField(max_length=256, default="", blank=True)
+    portfolio_title = models.CharField(max_length=256, null=True, blank=True)
+    contact_title = models.CharField(max_length=256, null=True, blank=True)
     whatsapp_link = models.URLField(max_length=256, blank=True, null=True)
     github_link = models.URLField(max_length=256, blank=True, null=True)
     linkedin_link = models.URLField(max_length=256, blank=True, null=True)
@@ -63,7 +65,7 @@ class Category(models.Model):
 
 class Projects(models.Model):
     name = models.CharField(max_length=64, unique=True, null=False, blank=False)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, null=True, blank=True)
     description = models.TextField(default="", null=False, blank=True)
     github_link = models.URLField(max_length=128, blank=True, null=True)
     display_online = models.BooleanField(default=True)
