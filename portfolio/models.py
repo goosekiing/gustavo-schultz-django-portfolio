@@ -51,7 +51,7 @@ class CarouselImages(models.Model):
         verbose_name_plural = "Carousel Images"
 
 class Category(models.Model):
-    name = models.CharField(max_length=32, unique=True, null=False, blank=False)
+    name = models.CharField(max_length=64, unique=True, null=False, blank=False)
     slug = models.SlugField(default="", max_length=64, unique=True, null=False, blank=True)
 
     def save(self, *args, **kwargs):
@@ -66,8 +66,8 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
 class Projects(models.Model):
-    name = models.CharField(max_length=64, unique=True, null=False, blank=False)
-    categories = models.ManyToManyField(Category, null=True, blank=True)
+    name = models.CharField(max_length=128, unique=True, null=False, blank=False)
+    categories = models.ManyToManyField(Category, blank=True)
     description = models.TextField(default="", null=False, blank=True)
     github_link = models.URLField(max_length=128, blank=True, null=True)
     display_online = models.BooleanField(default=True)
