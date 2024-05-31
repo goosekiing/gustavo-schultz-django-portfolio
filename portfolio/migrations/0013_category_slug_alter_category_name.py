@@ -10,14 +10,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='category',
-            name='slug',
-            field=models.SlugField(default='', max_length=64, unique=True),
-        ),
         migrations.AlterField(
             model_name='category',
             name='name',
             field=models.CharField(max_length=32, unique=True),
+        ),
+        migrations.AddField(
+            model_name='category',
+            name='slug',
+            field=models.SlugField(default='', max_length=64, blank=True),
         ),
     ]

@@ -52,7 +52,7 @@ class CarouselImages(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True, null=False, blank=False)
-    slug = models.SlugField(default="", max_length=64, unique=True, null=False, blank=True)
+    slug = models.SlugField(default="", max_length=64, null=False, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

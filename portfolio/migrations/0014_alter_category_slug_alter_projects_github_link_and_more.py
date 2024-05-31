@@ -11,11 +11,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='category',
-            name='slug',
-            field=models.SlugField(blank=True, default='', max_length=64, unique=True),
-        ),
-        migrations.AlterField(
             model_name='projects',
             name='github_link',
             field=models.URLField(blank=True, max_length=128, null=True),
