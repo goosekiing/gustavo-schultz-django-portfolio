@@ -18,6 +18,8 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Paths to models:
 ABOUT_PICTURE_DIR = 'images/about/'
 CAROUSEL_IMAGES_DIR = 'images/carousel/'
 PROJECT_IMAGE_DIR = 'images/projects/%Y/%m/%d'
@@ -28,11 +30,26 @@ PROJECT_IMAGE_DIR = 'images/projects/%Y/%m/%d'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = str(os.getenv("DJANGO_SECRET_KEY"))
 
+IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+if IS_HEROKU_APP:
+    # Debug:
+    DEBUG = False
+    # Hosts:
+    ALLOWED_HOSTS = ["*"]
+    # Security settings
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+else:
+    # Debug:
+    DEBUG = True
+    # Hosts:
+    ALLOWED_HOSTS = []
+    # Security settings
+    SECURE_SSL_REDIRECT = False
 
 # Application definition
 
@@ -79,8 +96,8 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-DATABASE_URL = os.getenv('DATABASE_URL')
-DB_PASSWORD = os.getenv('COCKROACHLABS_DB_PASSWORD')
+DATABASE_URL = str(os.getenv('DATABASE_URL'))
+DB_PASSWORD = str(os.getenv('COCKROACHLABS_DB_PASSWORD'))
 DATABASE_URL = DATABASE_URL.replace('@', f'{DB_PASSWORD}@')
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL, engine='django_cockroachdb')
@@ -136,6 +153,7 @@ AWS_HEADERS = {
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATICFILES_STORAGE = 'setup.custom_storages.StaticStorage'
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files
 DEFAULT_FILE_STORAGE = 'setup.custom_storages.MediaStorage'
