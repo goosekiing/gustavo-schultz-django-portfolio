@@ -35,7 +35,7 @@ IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 # SECURITY WARNING: don't run with debug turned on in production!
 if IS_HEROKU_APP:
     # Debug:
-    DEBUG = True
+    DEBUG = False
     # Hosts:
     ALLOWED_HOSTS = ["*"]
     # Security settings
