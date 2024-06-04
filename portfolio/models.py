@@ -66,7 +66,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
 class Projects(models.Model):
-    name = models.CharField(max_length=128, unique=True, null=False, blank=False)
+    name = models.CharField(max_length=128, default="", unique=True, null=False, blank=False)
     categories = models.ManyToManyField(Category, blank=True)
     description = models.TextField(default="", null=False, blank=True)
     github_link = models.URLField(max_length=128, blank=True, null=True)
