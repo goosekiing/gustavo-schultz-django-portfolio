@@ -18,8 +18,15 @@ from django.urls import path, include
 from portfolio.views import index
 from django.conf import settings
 from django.conf.urls.static import static
+from setup.settings import IS_HEROKU_APP
 
-urlpatterns = [
+if IS_HEROKU_APP:
+    urlpatterns = [
+        path('53cr3t-4dm1n/', admin.site.urls),
+        path("", include('portfolio.urls'))
+    ]
+else:
+    urlpatterns = [
     path('53cr3t-4dm1n/', admin.site.urls),
     path("", include('portfolio.urls'))
-]
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
