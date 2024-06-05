@@ -7,6 +7,12 @@ body {
     width: 100%;
 }
 
+.carrossel-img {
+    object-fit: contain; /* Garante que a imagem seja redimensionada conforme necessário, mantendo suas proporções */
+    width: 100%; /* Faz a imagem ocupar 100% da largura disponível */
+    height: 100%; /* Faz a imagem ocupar 100% da altura disponível */
+}
+
 @media (min-width: 576px) {
     .card-size{
         max-width: 20rem;
