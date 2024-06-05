@@ -8,9 +8,9 @@ body {
 }
 
 .carrossel-img {
-    object-fit: contain; /* Garante que a imagem seja redimensionada conforme necessário, mantendo suas proporções */
-    width: 100%; /* Faz a imagem ocupar 100% da largura disponível */
-    height: 100%; /* Faz a imagem ocupar 100% da altura disponível */
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 
 @media (min-width: 576px) {
