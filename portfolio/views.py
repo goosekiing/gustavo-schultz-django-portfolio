@@ -26,34 +26,18 @@ def about(request):
     }
     return render(request, "portfolio/about.html", context)
 
-def portfolio(request):
+def portfolio(request, category_slug=None):
     website_info = WebsiteInfo.objects.first()
-    projects = Projects.objects.order_by("-date").filter(display_online=True)
-    categories = Category.objects.annotate(
-        project_count=Count(
-            Subquery(
-                Projects.objects.filter(
-                    categories=OuterRef('pk'),
-                    display_online=True
-                ).values('categories')
-            )
-        )
-    ).filter(project_count__gt=0)
     selected_tag = None
     portfolio_page = True
-    context = {
-        'website_info': website_info,
-        'projects': projects,
-        'categories': categories,
-        'selected_tag': selected_tag,
-        'portfolio_page': portfolio_page
-    }
-    return render(request, "portfolio/portfolio.html", context)
 
-def category(request, category_slug ):
-    website_info = WebsiteInfo.objects.first()
-    category_obj = get_object_or_404(Category, slug=category_slug)
-    projects = Projects.objects.order_by("-date").filter(display_online=True, categories=category_obj)
+    if category_slug:
+        category_obj = get_object_or_404(Category, slug=category_slug)
+        projects = Projects.objects.order_by("-date").filter(display_online=True, categories=category_obj)
+        selected_tag = category_slug
+    else:
+        projects = Projects.objects.order_by("-date").filter(display_online=True)
+
     categories = Category.objects.annotate(
         project_count=Count(
             Subquery(
@@ -64,8 +48,6 @@ def category(request, category_slug ):
             )
         )
     ).filter(project_count__gt=0)
-    selected_tag = category_slug
-    portfolio_page = True
     context = {
         'website_info': website_info,
         'projects': projects,
