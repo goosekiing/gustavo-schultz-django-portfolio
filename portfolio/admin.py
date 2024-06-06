@@ -21,6 +21,7 @@ class ProjectsAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "description", "display_online", "date")
     search_fields = ('project_name',)
     list_filter = ('categories',)
+    list_editable = ("display_online",)
     inlines = [ProjectImageInline]
    
 class CategoryAdmin(admin.ModelAdmin):

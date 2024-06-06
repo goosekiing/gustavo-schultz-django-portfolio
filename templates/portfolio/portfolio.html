@@ -18,28 +18,30 @@
   {% endif %}
 </div>
 
-<div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">
-  {% if projects %}
-  {% for project in projects%}
-    <a href="{% url 'project' project.id %}{% if selected_tag %}?tag={{selected_tag}}{% endif %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
-      {% if project.images.exists %}
-        <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
-      {% else %}
-        <img src="{% static 'portfolio/assets/no_image.jpg' %}" class="card-img-top img-fluid" alt="Sorry, this project has no image">
-      {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ project.name }}</h5>
-        <div class="d-flex justify-content-end">
-          {% if project.categories %}
-            {% for category in project.categories.all %}
-              <span class="badge text-bg-secondary mx-1">{{ category }}</span>
-            {% endfor %}
-          {% endif %}
+{% if projects %}
+  <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">
+    {% for project in projects%}
+      <a href="{% url 'project' project.id %}{% if selected_tag %}?tag={{selected_tag}}{% endif %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
+        {% if project.images.exists %}
+          <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
+        {% else %}
+          <img src="{% static 'portfolio/assets/no_image.jpg' %}" class="card-img-top img-fluid" alt="Sorry, this project has no image">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ project.name }}</h5>
+          <div class="d-flex justify-content-end">
+            {% if project.categories %}
+              {% for category in project.categories.all %}
+                <span class="badge text-bg-secondary mx-1">{{ category }}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
         </div>
-      </div>
-    </a>
-  {% endfor %}
-  {% endif %}
-</div>
+      </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <h4 class="text-light fs-5 my-sm-auto">Sorry, there is no projects to display at the moment.</h4>
+{% endif %}
 
 {% endblock content %}
