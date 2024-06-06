@@ -5,7 +5,7 @@
   <div class="row mt-5">
     <div class="col-md-6">
       {% if project.images.exists %}
-        <div id="project-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="project-carousel" class="carousel slide">
           <div class="carousel-inner">
             {% for image in project.images.all %}
               <div class="carousel-item {% if forloop.first %}active{% endif %}">

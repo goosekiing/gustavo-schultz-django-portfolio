@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from django.db.models import Count
+from django.db.models import Count, Subquery, OuterRef
 from portfolio.models import WebsiteInfo, CarouselImages, Projects, Category
 
 def index(request):
@@ -29,7 +29,16 @@ def about(request):
 def portfolio(request):
     website_info = WebsiteInfo.objects.first()
     projects = Projects.objects.order_by("-date").filter(display_online=True)
-    categories = Category.objects.annotate(project_count=Count('projects')).filter(project_count__gt=0)
+    categories = Category.objects.annotate(
+        project_count=Count(
+            Subquery(
+                Projects.objects.filter(
+                    categories=OuterRef('pk'),
+                    display_online=True
+                ).values('categories')
+            )
+        )
+    ).filter(project_count__gt=0)
     selected_tag = None
     portfolio_page = True
     context = {
@@ -45,7 +54,16 @@ def category(request, category_slug ):
     website_info = WebsiteInfo.objects.first()
     category_obj = get_object_or_404(Category, slug=category_slug)
     projects = Projects.objects.order_by("-date").filter(display_online=True, categories=category_obj)
-    categories = Category.objects.annotate(project_count=Count('projects')).filter(project_count__gt=0)
+    categories = Category.objects.annotate(
+        project_count=Count(
+            Subquery(
+                Projects.objects.filter(
+                    categories=OuterRef('pk'),
+                    display_online=True
+                ).values('categories')
+            )
+        )
+    ).filter(project_count__gt=0)
     selected_tag = category_slug
     portfolio_page = True
     context = {
