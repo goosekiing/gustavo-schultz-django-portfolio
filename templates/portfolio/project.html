@@ -8,7 +8,7 @@
         <div id="project-carousel" class="carousel slide">
           <div class="carousel-inner">
             {% for image in project.images.all %}
-              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <div class="carousel-item carousel-img-container bg-body-tertiary {% if forloop.first %}active{% endif %}">
                 <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ image.alt }}">
               </div>
             {% endfor %}

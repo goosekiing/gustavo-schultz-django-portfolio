@@ -6,12 +6,12 @@
   <h3 class="text-light fs-4 my-sm-auto">{{ website_info.portfolio_title }}</h3>
   {% if categories %}
     <div class="d-flex justify-content-sm-end justify-content-start flex-wrap col-sm-6 mb-3 mb-sm-auto">
-      <a href="{% url 'portfolio' %}"><li class="mx-1 badge {% if selected_tag %}text-bg-secondary{% else %}text-bg-light{% endif %}">All Projects</li></a>
+      <a href="{% url 'portfolio' %}"><li class="mx-1 badge {% if selected_tag %}bg-body-tertiary{% else %}text-bg-light{% endif %}">All Projects</li></a>
       {% for category in categories %}
         {% if category.slug == selected_tag %}
           <a href="{% url 'portfolio' %}"><li class="mx-1 badge text-bg-light">{{ category.name }}</li></a>
         {% else %}
-          <a href="{% url 'category' category.slug %}"><li class="mx-1 badge text-bg-secondary">{{ category.name }}</li></a>
+          <a href="{% url 'category' category.slug %}"><li class="mx-1 badge bg-body-tertiary">{{ category.name }}</li></a>
         {% endif %}
       {% endfor %}
     </div>
@@ -22,11 +22,13 @@
   <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">
     {% for project in projects%}
       <a href="{% url 'project' project.id %}{% if selected_tag %}?tag={{selected_tag}}{% endif %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
-        {% if project.images.exists %}
-          <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
-        {% else %}
-          <img src="{% static 'portfolio/assets/no_image.jpg' %}" class="card-img-top img-fluid" alt="Sorry, this project has no image">
-        {% endif %}
+        <div class="card-img-container bg-body-tertiary">
+          {% if project.images.exists %}
+            <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
+          {% else %}
+            <img src="{% static 'portfolio/assets/no_image.jpg' %}" class="card-img-top img-fluid" alt="Sorry, this project has no image">
+          {% endif %}
+        </div>
         <div class="card-body">
           <h5 class="card-title">{{ project.name }}</h5>
           <div class="d-flex justify-content-end">
