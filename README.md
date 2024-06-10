@@ -23,7 +23,7 @@ A personal webpage created using Django and Bootstrap technologies, featuring a 
 
 ## Technologies Used and Prerequisites
 
-- **Python**: 3.11.4
+- **Python**: 3.11.9
 - **Django**: 4.1.13
 - **Bootstrap**: 5.3
 - **boto3**: 1.34.114
