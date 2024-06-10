@@ -33,10 +33,10 @@ def portfolio(request, category_slug=None):
 
     if category_slug:
         category_obj = get_object_or_404(Category, slug=category_slug)
-        projects = Projects.objects.order_by("-date").filter(display_online=True, categories=category_obj)
+        projects = Projects.objects.order_by("publish_date").filter(display_online=True, categories=category_obj)
         selected_tag = category_slug
     else:
-        projects = Projects.objects.order_by("-date").filter(display_online=True)
+        projects = Projects.objects.order_by("publish_date").filter(display_online=True)
 
     categories = Category.objects.annotate(
         project_count=Count(

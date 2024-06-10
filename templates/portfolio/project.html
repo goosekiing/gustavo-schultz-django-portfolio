@@ -6,10 +6,10 @@
     <div class="col-md-6">
       {% if project.images.exists %}
         <div id="project-carousel" class="carousel slide">
-          <div class="carousel-inner">
+          <div class="carousel-inner rounded">
             {% for image in project.images.all %}
               <div class="carousel-item carousel-img-container bg-body-tertiary {% if forloop.first %}active{% endif %}">
-                <img src="{{ image.image.url }}" class="d-block w-100 rounded" alt="{{ image.alt }}">
+                <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ image.alt }}">
               </div>
             {% endfor %}
           </div>
@@ -29,16 +29,16 @@
       {% endif %}
     </div>
 
-    <div class="col-md-6 d-md-flex row align-content-between flex-wrap">
+    <div class="col-md-6 d-md-flex mt-2 mt-sm-0 row align-content-between flex-wrap">
       <div>
         <h3 class="fs-5">{{ project.name }}</h3>
-        <p class="my-1">{{ project.description|linebreaks }}</p>
-        {% if project.github_link %}
-          <a href="{{ project.github_link }}" class="btn btn-secondary col-xl-3 col-4"><i class="bi bi-github"></i> GitHub</a>
-        {% endif %}
+        {{ project.description|linebreaks }}
+        {% if project.develop_date %} <p class="my-0 fs-7 text-body-tertiary">Developed: {{ project.develop_date|date:"b, Y" }}</p> {% endif %}
+        <p class="my-0 fs-7 text-body-tertiary">Published: {{ project.publish_date|date:"b j, Y" }}</p>
+        {% if project.github_link %} <a href="{{ project.github_link }}" class="btn btn-secondary my-0 col-xl-3 col-4"><i class="bi bi-github"></i> GitHub</a> {% endif %}
       </div>
-      <div>
-        <a href="{% if tag %}{% url 'category' tag %}{% else %}{% url 'portfolio' %}{% endif %}" class="btn btn-secondary mt-2 col-xl-3 col-4">Voltar</a>
+      <div>        
+        <a href="{% if tag %}{% url 'category' tag %}{% else %}{% url 'portfolio' %}{% endif %}" class="btn btn-secondary my-2 mb-sm-0 col-xl-3 col-4">Return</a>
       </div>  
     </div>
   </div>

@@ -71,7 +71,8 @@ class Projects(models.Model):
     description = models.TextField(default="", null=False, blank=True)
     github_link = models.URLField(max_length=128, blank=True, null=True)
     display_online = models.BooleanField(default=True)
-    date = models.DateTimeField(default=timezone.now, blank=False)
+    develop_date = models.DateField(null=True, blank=True)
+    publish_date = models.DateTimeField(default=timezone.now, blank=False)
 
     def __str__(self):
         return self.name

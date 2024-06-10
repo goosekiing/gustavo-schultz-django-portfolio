@@ -3,6 +3,10 @@ body {
     font-weight: 400;
 }
 
+.fs-7{
+    font-size: 0.85rem;
+}
+
 .card-size{
     width: 100%;
 }
