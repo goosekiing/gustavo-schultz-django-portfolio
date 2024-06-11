@@ -5,15 +5,34 @@
 <div class="d-flex flex-column flex-sm-row justify-content-between align-items-md-center mt-2 mt-sm-4 mb-0 mb-sm-3">
   <h3 class="text-light fs-4 my-sm-auto">{{ website_info.portfolio_title }}</h3>
   {% if categories %}
+
     <div class="d-flex justify-content-sm-end justify-content-start flex-wrap col-sm-6 mb-3 mb-sm-auto">
-      <a href="{% url 'portfolio' %}"><li class="mx-1 badge {% if selected_tag %}bg-body-tertiary{% else %}text-bg-light{% endif %}">All Projects</li></a>
+      <a href="{% url 'portfolio' %}"><li class="mx-1 badge {% if selected_tag %}bg-dark-subtle{% else %}text-bg-light{% endif %}">All Projects</li></a>
       {% for category in categories %}
         {% if category.slug == selected_tag %}
           <a href="{% url 'portfolio' %}"><li class="mx-1 badge text-bg-light">{{ category.name }}</li></a>
         {% else %}
-          <a href="{% url 'category' category.slug %}"><li class="mx-1 badge bg-body-tertiary">{{ category.name }}</li></a>
+          <a href="{% url 'category' category.slug %}"><li class="mx-1 badge bg-dark-subtle">{{ category.name }}</li></a>
         {% endif %}
       {% endfor %}
+      <div>
+        <div class="dropdown">
+          <button class="btn bg-dark-subtle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Order By:
+          </button>
+          <ul class="dropdown-menu">
+
+            <li><a class="dropdown-item {% if order_by == 'name_asc' %}bg-light-subtle{% endif %}" href="?order_by=name_asc">Name | A - Z</a></li>
+            <li><a class="dropdown-item {% if order_by == 'publish_date_desc' %}bg-light-subtle{% endif %}" href="?order_by=publish_date_desc">Published | New → Old</a></li>
+            <li><a class="dropdown-item {% if order_by == 'publish_date_asc' %}bg-light-subtle{% endif %}" href="?order_by=publish_date_asc">Published | Old → New</a></li>
+            <li><a class="dropdown-item {% if order_by == 'develop_date_desc' %}bg-light-subtle{% endif %}" href="?order_by=develop_date_desc">Developed | New → Old</a></li>
+            <li><a class="dropdown-item {% if order_by == 'develop_date_asc' %}bg-light-subtle{% endif %}" href="?order_by=develop_date_asc">Developed | Old → New</a></li>
+
+
+          </ul>
+        </div>
+      </div>
+
     </div>
   {% endif %}
 </div>
