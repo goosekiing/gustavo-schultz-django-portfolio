@@ -38,7 +38,7 @@
         {% if project.github_link %} <a href="{{ project.github_link }}" class="btn btn-secondary my-0 col-xl-3 col-4"><i class="bi bi-github"></i> GitHub</a> {% endif %}
       </div>
       <div>        
-        <a href="{% if tag %}{% url 'category' tag %}{% else %}{% url 'portfolio' %}{% endif %}" class="btn btn-secondary my-2 mb-sm-0 col-xl-3 col-4">Return</a>
+        <a href="{% if tag %}{% url 'category' tag %}{% else %}{% url 'portfolio' %}{% endif %}{% if order_by %}?order_by={{order_by}}{% endif %}" class="btn btn-secondary my-2 mb-sm-0 col-xl-3 col-4">Return</a>
       </div>  
     </div>
   </div>

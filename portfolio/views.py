@@ -57,6 +57,7 @@ def portfolio(request, category_slug=None):
             )
         )
     ).filter(project_count__gt=0).order_by('name')
+    
     context = {
         'website_info': website_info,
         'projects': projects,
@@ -72,13 +73,15 @@ def project(request, project_id):
     project = get_object_or_404(Projects, pk=project_id)
     if project.display_online:
         tag = request.GET.get('tag')
+        order_by = request.GET.get('order_by')
         display_carousel_buttons = True if project.images.count() > 1 else False
         portfolio_page = True
         context = {
             'project': project,
             'tag': tag,
             'display_carousel_buttons': display_carousel_buttons,
-            'portfolio_page': portfolio_page
+            'portfolio_page': portfolio_page,
+            'order_by': order_by,
             }
         return render(request, "portfolio/project.html", context)
     raise Http404("Error: project id not found")
