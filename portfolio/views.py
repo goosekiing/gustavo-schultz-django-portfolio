@@ -3,13 +3,13 @@ from django.http import Http404
 from django.db.models import Count, Subquery, OuterRef
 from portfolio.models import WebsiteInfo, CarouselImages, Projects, Category
 
-PORTFOLIO_ORDER_OPTIONS = {
-    'name_asc': 'name',
-    'publish_date_desc': '-publish_date',
-    'publish_date_asc': 'publish_date',
-    'develop_date_desc': '-develop_date',
-    'develop_date_asc': 'develop_date'
-}
+PORTFOLIO_ORDER_OPTIONS = [
+    ('Name | A - Z', 'name'),
+    ('Published | New → Old', '-publish_date'),
+    ('Published | Old → New', 'publish_date'),
+    ('Developed | New → Old', '-develop_date'),
+    ('Developed | Old → New', 'develop_date')
+]
 
 def index(request):
     website_info = WebsiteInfo.objects.first()
@@ -38,15 +38,14 @@ def portfolio(request, category_slug=None):
     website_info = WebsiteInfo.objects.first()
     selected_tag = None
     portfolio_page = True
-    order_by = request.GET.get("order_by", "publish_date_asc")
-    order_field = PORTFOLIO_ORDER_OPTIONS.get(order_by, "publish_date")
+    order_by = request.GET.get("order_by", "publish_date")
 
     if category_slug:
         category_obj = get_object_or_404(Category, slug=category_slug)
-        projects = Projects.objects.order_by(order_field).filter(display_online=True, categories=category_obj)
+        projects = Projects.objects.order_by(order_by).filter(display_online=True, categories=category_obj)
         selected_tag = category_slug
     else:
-        projects = Projects.objects.order_by(order_field).filter(display_online=True)
+        projects = Projects.objects.order_by(order_by).filter(display_online=True)
 
     categories = Category.objects.annotate(
         project_count=Count(
@@ -57,13 +56,14 @@ def portfolio(request, category_slug=None):
                 ).values('categories')
             )
         )
-    ).filter(project_count__gt=0)
+    ).filter(project_count__gt=0).order_by('name')
     context = {
         'website_info': website_info,
         'projects': projects,
         'categories': categories,
         'selected_tag': selected_tag,
         'portfolio_page': portfolio_page,
+        'order_options': PORTFOLIO_ORDER_OPTIONS,
         'order_by': order_by,
     }
     return render(request, "portfolio/portfolio.html", context)

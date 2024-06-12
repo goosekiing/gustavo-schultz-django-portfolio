@@ -6,34 +6,33 @@
   <h3 class="text-light fs-4 my-sm-auto">{{ website_info.portfolio_title }}</h3>
   {% if categories %}
 
-    <div class="d-flex justify-content-sm-end justify-content-start flex-wrap col-sm-6 mb-3 mb-sm-auto">
-      <a href="{% url 'portfolio' %}"><li class="mx-1 badge {% if selected_tag %}bg-dark-subtle{% else %}text-bg-light{% endif %}">All Projects</li></a>
-      {% for category in categories %}
-        {% if category.slug == selected_tag %}
-          <a href="{% url 'portfolio' %}"><li class="mx-1 badge text-bg-light">{{ category.name }}</li></a>
-        {% else %}
-          <a href="{% url 'category' category.slug %}"><li class="mx-1 badge bg-dark-subtle">{{ category.name }}</li></a>
-        {% endif %}
-      {% endfor %}
-      <div>
-        <div class="dropdown">
-          <button class="btn bg-dark-subtle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Order By:
-          </button>
-          <ul class="dropdown-menu">
+    <div class="d-flex flex-row justify-content-sm-end align-items-center col-sm-8 col-md-6">
 
-            <li><a class="dropdown-item {% if order_by == 'name_asc' %}bg-light-subtle{% endif %}" href="?order_by=name_asc">Name | A - Z</a></li>
-            <li><a class="dropdown-item {% if order_by == 'publish_date_desc' %}bg-light-subtle{% endif %}" href="?order_by=publish_date_desc">Published | New → Old</a></li>
-            <li><a class="dropdown-item {% if order_by == 'publish_date_asc' %}bg-light-subtle{% endif %}" href="?order_by=publish_date_asc">Published | Old → New</a></li>
-            <li><a class="dropdown-item {% if order_by == 'develop_date_desc' %}bg-light-subtle{% endif %}" href="?order_by=develop_date_desc">Developed | New → Old</a></li>
-            <li><a class="dropdown-item {% if order_by == 'develop_date_asc' %}bg-light-subtle{% endif %}" href="?order_by=develop_date_asc">Developed | Old → New</a></li>
+      <div class="d-flex justify-content-sm-end justify-content-start flex-wrap align-items-center my-0">
+        <a href="{% url 'portfolio' %}" class="text-decoration-none m-1 badge {% if selected_tag %}bg-dark-subtle{% else %}text-bg-light{% endif %}">All Projects</a>
+        {% for category in categories %}
+          {% if category.slug == selected_tag %}
+            <a href="{% url 'portfolio' %}" class="text-decoration-none m-1 badge text-bg-light">{{ category.name }}</a>
+          {% else %}
+            <a href="{% url 'category' category.slug %}" class="text-decoration-none m-1 badge bg-dark-subtle">{{ category.name }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
 
-
-          </ul>
-        </div>
+      <div class="dropdown">
+        <button class="btn bg-dark-subtle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Order By:
+        </button>
+        <ul class="dropdown-menu">
+          {% for chave, valor in order_options %}
+            <li><a class="dropdown-item {% if order_by == valor %}bg-light-subtle{% endif %}" href="?order_by={{valor}}">{{chave}}</a></li>
+          {% endfor %}
+        </ul>
       </div>
 
     </div>
+
+    
   {% endif %}
 </div>
 
@@ -53,7 +52,7 @@
           <div class="d-flex justify-content-end">
             {% if project.categories %}
               {% for category in project.categories.all %}
-                <span class="badge text-bg-secondary mx-1">{{ category }}</span>
+                <span class="badge bg-dark-subtle mx-1">{{ category }}</span>
               {% endfor %}
             {% endif %}
           </div>
