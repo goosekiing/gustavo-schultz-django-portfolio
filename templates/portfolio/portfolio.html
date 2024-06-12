@@ -28,8 +28,8 @@
           Order By:
         </button>
         <ul class="dropdown-menu">
-          {% for chave, valor in order_options %}
-            <li><a class="dropdown-item text-light {% if order_by == valor %}bg-light-subtle disabled" aria-current="true{% endif %}" href="?order_by={{valor}}">{{chave}}</a></li>
+          {% for order_name, order_query in order_options %}
+            <li><a class="dropdown-item text-light {% if order_by == order_query %}bg-light-subtle disabled" aria-current="true{% endif %}" href="?order_by={{order_query}}">{{order_name}}</a></li>
           {% endfor %}
         </ul>
       </div>

@@ -5,6 +5,7 @@ from portfolio.models import WebsiteInfo, CarouselImages, Projects, Category
 
 PORTFOLIO_ORDER_OPTIONS = [
     ('Name | A - Z', 'name'),
+    ('Name | Z - A', '-name'),
     ('Published | New → Old', '-publish_date'),
     ('Published | Old → New', 'publish_date'),
     ('Developed | New → Old', '-develop_date'),
