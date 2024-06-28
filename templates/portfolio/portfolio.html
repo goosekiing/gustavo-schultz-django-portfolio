@@ -22,7 +22,7 @@
     {% endif %}
 
     {% comment %} Order By Button: {% endcomment %}
-    {% if projects.count > 1 %}
+    {% if projects %}
       <div class="dropdown">
         <button class="btn bg-dark-subtle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Order By:
@@ -38,6 +38,7 @@
   </div>
 </div>
 
+{% comment %} Projects Cards Display: {% endcomment %}
 {% if projects %}
   <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">
     {% for project in projects%}
