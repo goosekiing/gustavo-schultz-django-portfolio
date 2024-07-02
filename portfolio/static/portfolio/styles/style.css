@@ -11,6 +11,10 @@ body {
     width: 100%;
 }
 
+.portfolio-min-height{
+    min-height: 85vh;
+}
+
 .carrossel-img {
     object-fit: contain;
     width: 100%;
