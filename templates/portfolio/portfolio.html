@@ -45,7 +45,7 @@
     {% if projects %}
       <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around align-items-center w-100">
         {% for project in projects %}
-          <a href="{% url 'project' project.id %}?{% query_transform tag=selected_tag order_by=order_by page=projects.number %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
+          <a href="{% url 'project' project.id %}{% if page != DEFAULT_QUERIES.page or selected_tag != DEFAULT_QUERIES.tag or order_by != DEFAULT_QUERIES.order_by %}?{% query_transform tag=selected_tag order_by=order_by page=projects.number %}{% endif %}" class="card m-1 bg-black text-light clickable-card text-decoration-none d-block d-sm-inline-block card-size">
             <div class="card-img-container bg-body-tertiary">
               {% if project.images.exists %}
                 <img src="{{ project.images.first.image.url }}" class="card-img-top img-fluid" alt="Project Image">
