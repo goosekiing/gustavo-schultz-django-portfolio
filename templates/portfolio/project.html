@@ -34,13 +34,16 @@
       <div>
         <h3 class="fs-5">{{ project.name }}</h3>
         {{ project.description|linebreaks }}
+        
+      </div>
+      <div>
         {% if project.develop_date %} <p class="my-0 fs-7 text-body-tertiary">Developed: {{ project.develop_date|date:"b, Y" }}</p> {% endif %}
         <p class="my-0 fs-7 text-body-tertiary">Published: {{ project.publish_date|date:"b j, Y" }}</p>
-        {% if project.github_link %} <a href="{{ project.github_link }}" class="btn btn-secondary my-0 col-xl-3 col-4"><i class="bi bi-github"></i> GitHub</a> {% endif %}
+        <div class="d-flex flex-column">
+          {% if project.github_link %} <a href="{{ project.github_link }}" class="btn btn-secondary my-0 col-xl-3 col-4"><i class="bi bi-github"></i> GitHub</a> {% endif %}        
+          <a href="{% if tag and tag != 'None' %}{% url 'category' tag %}{% else %}{% url 'portfolio' %}{% endif %}{% if order_by != DEFAULT_QUERIES.order_by %}?order_by={{order_by}}{% endif %}{% if page != DEFAULT_QUERIES.page %}{% if order_by == DEFAULT_QUERIES.order_by %}?{% else %}&{% endif %}page={{page}}{% endif %}" class="btn btn-secondary my-2 mb-sm-0 col-xl-3 col-4">Return</a>
+        </div>
       </div>
-      <div>        
-        <a href="{% if tag and tag != 'None' %}{% url 'category' tag %}{% else %}{% url 'portfolio' %}{% endif %}{% if order_by != DEFAULT_QUERIES.order_by %}?order_by={{order_by}}{% endif %}{% if page != DEFAULT_QUERIES.page %}{% if order_by == DEFAULT_QUERIES.order_by %}?{% else %}&{% endif %}page={{page}}{% endif %}" class="btn btn-secondary my-2 mb-sm-0 col-xl-3 col-4">Return</a>
-      </div>  
     </div>
   </div>
 
