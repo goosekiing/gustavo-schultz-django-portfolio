@@ -12,13 +12,11 @@
 
     <div class="slider">
       <div class="slide-track">
-
-          {% for image in carousel_images %}
-            <div class="slide d-flex">
-            <img src="{{ image.image.url }}" class="carrossel-img" alt="{{ image.alt }}" />
-            </div>
-          {% endfor %}
-
+        {% for image in carousel_images %}
+          <div class="slide d-flex">
+          <img src="{{ image.image.url }}" class="carrossel-img" alt="{{ image.alt }}" />
+          </div>
+        {% endfor %}
       </div>
     </div> 
 

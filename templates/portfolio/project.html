@@ -32,9 +32,8 @@
 
     <div class="col-md-6 d-md-flex mt-2 mt-sm-0 row align-content-between flex-wrap">
       <div>
-        <h3 class="fs-5">{{ project.name }}</h3>
-        {{ project.description|linebreaks }}
-        
+        <h3 class="fs-4">{{ project.name }}</h3>
+        {{ project.description | safe | linebreaks }}
       </div>
       <div>
         {% if project.develop_date %} <p class="my-0 fs-7 text-body-tertiary">Developed: {{ project.develop_date|date:"b, Y" }}</p> {% endif %}
