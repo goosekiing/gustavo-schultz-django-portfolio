@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from django.db.models import Count, Subquery, OuterRef
+from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from portfolio.models import WebsiteInfo, CarouselImages, Projects, Category
 
@@ -67,16 +67,9 @@ def portfolio(request, category_slug=None):
         projects = paginator.page(paginator.num_pages)
 
     categories = Category.objects.annotate(
-        project_count=Count(
-            Subquery(
-                Projects.objects.filter(
-                    categories=OuterRef('pk'),
-                    display_online=True
-                ).values('categories')
-            )
-        )
+        project_count=Count('projects', filter=Q(projects__display_online=True))
     ).filter(project_count__gt=0).order_by('name')
-    
+
     context = {
         'website_info': website_info,
         'projects': projects,
