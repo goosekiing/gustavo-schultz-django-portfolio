@@ -35,7 +35,7 @@ IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 # SECURITY WARNING: don't run with debug turned on in production!
 if IS_HEROKU_APP:
     # Debug:
-    DEBUG = (bool(int(os.getenv("HEROKU_DEBUG_0_1"))))
+    DEBUG = (bool(int(os.getenv("DEBUG_0_1"))))
     # Hosts:
     ALLOWED_HOSTS = ["*"]
     # Security settings
@@ -45,7 +45,7 @@ if IS_HEROKU_APP:
     CSRF_COOKIE_SECURE = True
 else:
     # Debug:
-    DEBUG = (bool(int(os.getenv("HEROKU_DEBUG_0_1"))))
+    DEBUG = (bool(int(os.getenv("DEBUG_0_1"))))
     # Hosts:
     ALLOWED_HOSTS = ["*"]
     # Security settings
