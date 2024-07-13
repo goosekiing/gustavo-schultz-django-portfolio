@@ -1,7 +1,7 @@
+import os
 from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from .models import WebsiteInfo, CarouselImages, ProjectImage, Projects
-import os
 
 # Função utilitária para deletar a imagem antiga se foi modificada
 def delete_old_image(instance, field_name):

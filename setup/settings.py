@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Paths to models:
 ABOUT_PICTURE_DIR = 'images/about/'
 CAROUSEL_IMAGES_DIR = 'images/carousel/'
-PROJECT_IMAGE_DIR = 'images/projects/%Y/%m/%d'
+PROJECT_IMAGE_DIR = '%Y/%m/%d'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/

@@ -1,10 +1,10 @@
+import os
+from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.utils.text import slugify
 from solo.models import SingletonModel
-from datetime import datetime
-import os
 
 def about_picture_path(instance, filename):
     return os.path.join(settings.ABOUT_PICTURE_DIR, filename)
@@ -14,7 +14,7 @@ def carousel_image_path(instance, filename):
 
 def project_image_path(instance, filename):
     date_path = datetime.now().strftime(settings.PROJECT_IMAGE_DIR)
-    return os.path.join(date_path, filename)
+    return os.path.join(f'images/projects/{instance.project.id}', date_path, filename)
 
 class WebsiteInfo(SingletonModel):
     index_title = models.CharField(max_length=256, null=True, blank=True)
