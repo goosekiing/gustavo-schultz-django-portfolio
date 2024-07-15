@@ -14,7 +14,7 @@ PORTFOLIO_ORDER_OPTIONS = [ #('Template display name', 'category order name')
 ]
 
 DEFAULT_QUERIES = {
-    'order_by': 'publish_date',
+    'order_by': '-publish_date',
     'page': 1,
     'tag': None,
 }
